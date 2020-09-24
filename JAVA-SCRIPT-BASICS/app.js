@@ -42,25 +42,25 @@ female = 'female';
 console.log(female);*/
 
 
-//Operaters
+//Operaters and condition simple calculater
 
-var number1,number2,operater;
+// var number1,number2,operater;
 
-number1 = prompt("Enter number 1 : ");
-number2 = prompt("Enter number 2 : ");
-operater = prompt("Enter operater +-*/");
+// number1 = prompt("Enter number 1 : ");
+// number2 = prompt("Enter number 2 : ");
+// operater = prompt("Enter operater +-*/");
 
-if(operater == '+'){
-    var addition = 1*number1+number2*1;
-    alert("Addition : "+addition);
-}else if(operater == '-'){
-    var subtraction = number1 - number2;
-    alert("Subtraction : "+subtraction);
-}else if(operater == '*'){
-    var multiplication = number1 * number2;
-    alert("Multiplication : "+multiplication);
-}else if(operater == '/'){
-    var division = number1 / number2;
-    alert("Division : "+division);
-}
+// if(operater == '+'){
+//     var addition = 1*number1+number2*1;
+//     alert("Addition : "+addition);
+// }else if(operater == '-'){
+//     var subtraction = number1 - number2;
+//     alert("Subtraction : "+subtraction);
+// }else if(operater == '*'){
+//     var multiplication = number1 * number2;
+//     alert("Multiplication : "+multiplication);
+// }else if(operater == '/'){
+//     var division = number1 / number2;
+//     alert("Division : "+division);
+// }
 
