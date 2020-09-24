@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<title>BMI CALCULATER</title>
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                    <h1 class="headings">JOHN DETAILS</h1>
+                    <input type="number" class="form-control" placeholder="Enter Mass" id="john_mass"/>
+                    <br>
+                    <input type="number" class="form-control" placeholder="Enter Height" id="john_height"/>
+            </div>
+            <div class="col-md-6">
+                    <h1 class="headings">MARK DETAILS</h1>
+                    <input type="number" class="form-control" placeholder="Enter Mass" id="mark_mass"/>
+                    <br>
+                    <input type="number" class="form-control" placeholder="Enter Height" id="mark_height"/>
+                    <br>
+            </div>
+            <br>
+            <button class="form-control btn"  id="submit" onclick="calculating_BMI()">SUBMIT</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-center" id="show"></p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-center" id="show2"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container"><p id="question">IS MARK BMI HEIGHER THEN JOHN ? : </p><p class="text-center" id="result"></p></div>
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+
+
