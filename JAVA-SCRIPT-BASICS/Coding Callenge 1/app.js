@@ -12,6 +12,7 @@ function calculating_BMI(){
     BMI_JONN = (john_mass)/(john_height*john_height);
     BMI_MARK = (mark_mass)/(mark_height*mark_height);
     console.log(BMI_JONN);
+    console.log(BMI_MARK);
      //document.getElementById('show').innerHTML = BMI_JONN;
      if(BMI_MARK > BMI_JONN){
          RESULT = true;
@@ -22,4 +23,5 @@ function calculating_BMI(){
      document.getElementById('show').innerHTML = BMI_JONN.toFixed(2);
      document.getElementById('show2').innerHTML = BMI_MARK.toFixed(2);
      document.getElementById('result').innerHTML = RESULT;
+     console.log(RESULT);
 }
