@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background:rebeccapurple;
+}
+
+.container{
+    width: 600px;
+}
+
+.headings{
+    color:white;
+}
+
+#show{
+    color:white;
+    margin-top: 50px;
+    font-size: 50px;
+    float: left;
+    margin-left:-300px;
+}
+#show2{
+    color:white;
+    margin-top: 50px;
+    font-size: 50px;
+    float: right;
+    margin-right:-300px;
+}
+
+#result{
+    color:white;
+    font-size:30px;
+}
+
+#question{
+    color:white;
+    font-size:30px;
+}
