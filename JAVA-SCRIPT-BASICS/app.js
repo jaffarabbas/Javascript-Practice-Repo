@@ -64,3 +64,34 @@ console.log(female);*/
 //     alert("Division : "+division);
 // }
 
+//functions
+//declaration
+// function age(age){
+//  var result =2020 - age ;
+//  return result;
+// }
+// var a=  age(18);
+// console.log(a);
+
+//function expression
+
+// var expression = function(num,num2){
+//     return num * num2;
+// }
+
+// console.log(expression(1,2));
+
+// Array
+
+// var first =['jasdasd','asdasd','asdas',4];
+
+
+
+// console.log(first.length)
+
+// console.log(first.push("blue"))//last element enter
+// console.log(first.unshift("sdfsdfsd"))//first element enter
+// console.log(first.pop())//last gone
+// console.log(first.shift())//first gone
+// console.log(first.indexOf(4));//index of alement
+// console.log(first);//print array
