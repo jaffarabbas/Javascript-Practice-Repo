@@ -25,3 +25,4 @@ function filterObjectWithArray(obj, arr) {
 
 console.log(filtered)
 console.log(filterObjectWithArray(obj, arr))
+
