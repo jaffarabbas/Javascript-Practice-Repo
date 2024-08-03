@@ -10,7 +10,7 @@ var finalValueAfterOperations = function(operations) {
         }else{
             x = x + 1;
         }
-    }
+    }x``
     return x;
 };
 
