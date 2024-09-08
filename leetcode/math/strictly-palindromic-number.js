@@ -4,7 +4,6 @@
  */
 var isStrictlyPalindromic = function(n) {
     let endBase = n - 2;
-    let f = false;
     for (let i = 2; i <= endBase; i++) {
         let a = n.toString(i);
         let left = 0,right = a.length - 1;

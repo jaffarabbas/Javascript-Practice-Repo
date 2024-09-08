@@ -4,13 +4,7 @@
  * @return {number}
  */
 var numJewelsInStones = function(jewels, stones) {
-    let count  = 0;
-    for(let a of stones){
-        if(jewels.includes(a)){
-            count++;
-        }
-    }
-    return count;
+    goal-parser-interpretation
 };
 
 console.log(numJewelsInStones("aA","aAAbbbb"))
