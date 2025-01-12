@@ -26,4 +26,20 @@ function maxSum(arr,n,k){
     console.log(max);
 }
 
-maxSum(arr,n,k);
+// maxSum(arr,n,k);
+
+//itration logic for itrating right side
+var m = 2;
+var s = 0;
+for (var o = 0; o < 10; o++) {
+    s += o - (o - m)
+    console.log(s)
+}
+
+//itrating logic fro left side
+var m = 2;
+var s = 20;
+for (let o = 0; o < 10; o++) {
+    s -= o - (o - m)
+    console.log(s)
+}
