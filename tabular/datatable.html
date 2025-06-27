@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery DataTables with Column Filters</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<table id="invoiceTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>Tran ID</th>
+      <th>Ref No</th>
+      <th>Item ID</th>
+      <th>Pricing List ID</th>
+      <th>Quantity</th>
+      <th>Sale Price</th>
+      <th>Creation Date</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th><input type="text" placeholder="Search Tran ID" /></th>
+      <th><input type="text" placeholder="Search Ref No" /></th>
+      <th><input type="text" placeholder="Search Item ID" /></th>
+      <th><input type="text" placeholder="Search Pricing List" /></th>
+      <th><input type="text" placeholder="Search Qty" /></th>
+      <th><input type="text" placeholder="Search Price" /></th>
+      <th><input type="text" placeholder="Search Date" /></th>
+    </tr>
+  </tfoot>
+</table>
+<script>
+$(document).ready(function () {
+  const columnFields = ['tranId', 'tranRefNo', 'itemId', 'pricingListId', 'quantity', 'salePrice', 'creationDate'];
+
+  var table = $('#invoiceTable').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: function (data, callback, settings) {
+      // Collect column filter values using known field names
+      var filters = {};
+      $('#invoiceTable tfoot input').each(function (index) {
+        var val = $(this).val();
+        if (val) filters[columnFields[index]] = val;
+      });
+
+      var pageNumber = Math.floor(data.start / data.length) + 1;
+      var pageSize = data.length;
+
+      $.ajax({
+        url: 'https://localhost:7180/GetAllInvoices',
+        method: 'GET',
+        data: {
+          pageNumber: pageNumber,
+          pageSize: pageSize,
+          ...filters
+        },
+        success: function (res) {
+          callback({
+            draw: data.draw,
+            recordsTotal: res.totalCount,
+            recordsFiltered: res.totalCount,
+            data: res.items
+          });
+        }
+      });
+    },
+    columns: [
+      { data: 'tranId' },
+      { data: 'tranRefNo' },
+      { data: 'itemId' },
+      { data: 'pricingListId' },
+      { data: 'quantity' },
+      { data: 'salePrice' },
+      { data: 'creationDate' }
+    ]
+  });
+
+  // Trigger filter search
+  $('#invoiceTable tfoot input').on('keyup change', function () {
+    table.ajax.reload();
+  });
+});
+</script>
+
+</body>
+</html>

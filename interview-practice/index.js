@@ -18,7 +18,18 @@ test(); // 4
 
 
 //iife
-
-(() => {
-    console.log('I am an IIFE');
+// iife stand for immediately invoked function expression
+// it is a function that is executed as soon as it is defined
+// it is used to create a new scope and avoid polluting the global scope
+// it is also used to create a module pattern
+var t = (() => {
+    var iifescope = 0;
+    return function(){
+        iifescope++;
+        console.log(iifescope);
+        return iifescope;
+    }
 })();
+
+t(); // 1
+

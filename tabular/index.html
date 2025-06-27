@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoices Table</title>
+  <link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>
+</head>
+<body>
+  <h2>Invoices</h2>
+  <div id="invoice-table"></div>
+
+  <script>
+    const table = new Tabulator("#invoice-table", {
+      layout: "fitColumns",
+      pagination: "remote",
+      paginationSize: 1000,
+      paginationSizeSelector: [10, 25, 50, 100, 500, 1000],
+      ajaxFiltering: true,   // ✅ allow Tabulator to send filter params
+      ajaxSorting: true,     // ✅ allow sorting too (optional)
+
+      ajaxURL: "https://localhost:7180/GetAllInvoices",
+      ajaxConfig: "GET",
+    //   params: {
+    //     pageNumber: 1,
+    //     pageSize: 1000
+    //   },
+      ajaxContentType: "json",
+
+    //   ajaxURLGenerator: function (url, config, params) {
+    //     // ✅ Convert filter array into key-value pairs
+    //     const filters = params.filter?.reduce((acc, f) => {
+    //       acc[f.field] = f.value;
+    //       return acc;
+    //     }, {}) || {};
+    //     console.log("Filters applied:", params);
+    //     const query = new URLSearchParams({
+    //       pageNumber: params.page,
+    //       pageSize: params.size,
+    //       ...filters
+    //     }).toString();
+    //     console.log("Generated URL:", `${url}?${query}`);
+    //     return `${url}?${query}`;
+    //   },
+
+      ajaxResponse: function (url, params, response) {
+        console.log("API Response:", response);
+        return response.items;
+      },
+
+      dataSendParams:{
+        pageNumber: function() {
+          return this.getPage();
+        },
+        pageSize: function() {
+          return this.getPageSize();
+        }
+      },
+      paginationDataReceived: {
+        data: "items",
+        total: "totalCount",
+        page: "pageNumber",
+        last_row: "totalCount"
+      },
+
+      columns: [
+        { title: "Tran ID", field: "tranId", headerFilter: "input" },
+        { title: "Ref No", field: "tranRefNo", headerFilter: "input" },
+        { title: "Item ID", field: "itemId", headerFilter: "input" },
+        { title: "Pricing List", field: "pricingListId", headerFilter: "input" },
+        { title: "Quantity", field: "quantity", headerFilter: "input" },
+        { title: "Sale Price", field: "salePrice", headerFilter: "input" },
+        { title: "Created", field: "creationDate", headerFilter: "input" }
+      ]
+    });
+  </script>
+</body>
+</html>
