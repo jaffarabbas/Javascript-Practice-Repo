@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grid.js Invoices Table</title>
+  <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+</head>
+<body>
+  <h2>Invoices (Grid.js)</h2>
+  <div id="invoice-table"></div>
+
+  <script>
+    const pageSize = 5;
+    let totalRows = 0;
+
+    async function fetchInvoices(page = 1) {
+      const res = await fetch(`https://localhost:7180/GetAllInvoices?pageNumber=${page}&pageSize=${pageSize}`);
+      const json = await res.json();
+      totalRows = json.totalCount; // ✅ get totalCount from API
+      return json.items;           // ✅ return the actual array
+    }
+
+    async function renderGrid() {
+      const data = await fetchInvoices();
+      console.log(data); // Log the fetched data for debugging
+      new gridjs.Grid({
+        columns: [
+          "Tran ID",
+          "Ref No",
+          "Item ID",
+          "Pricing List",
+          "Quantity",
+          "Sale Price",
+          "Created"
+        ],
+        data: data,
+        pagination: {
+          enabled: true,
+          limit: pageSize,
+          total: totalRows,
+          server: {
+            url: (prev, page) => {
+              return `https://localhost:7180/GetAllInvoices?pageNumber=${page}&pageSize=${pageSize}`;
+            }
+          }
+        }
+      }).render(document.getElementById("invoice-table"));
+    }
+
+    renderGrid();
+  </script>
+</body>
+</html>

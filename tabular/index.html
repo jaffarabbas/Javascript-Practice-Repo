@@ -12,67 +12,34 @@
 
   <script>
     const table = new Tabulator("#invoice-table", {
-      layout: "fitColumns",
-      pagination: "remote",
-      paginationSize: 1000,
-      paginationSizeSelector: [10, 25, 50, 100, 500, 1000],
-      ajaxFiltering: true,   // ✅ allow Tabulator to send filter params
-      ajaxSorting: true,     // ✅ allow sorting too (optional)
-
-      ajaxURL: "https://localhost:7180/GetAllInvoices",
-      ajaxConfig: "GET",
-    //   params: {
-    //     pageNumber: 1,
-    //     pageSize: 1000
-    //   },
-      ajaxContentType: "json",
-
-    //   ajaxURLGenerator: function (url, config, params) {
-    //     // ✅ Convert filter array into key-value pairs
-    //     const filters = params.filter?.reduce((acc, f) => {
-    //       acc[f.field] = f.value;
-    //       return acc;
-    //     }, {}) || {};
-    //     console.log("Filters applied:", params);
-    //     const query = new URLSearchParams({
-    //       pageNumber: params.page,
-    //       pageSize: params.size,
-    //       ...filters
-    //     }).toString();
-    //     console.log("Generated URL:", `${url}?${query}`);
-    //     return `${url}?${query}`;
-    //   },
-
-      ajaxResponse: function (url, params, response) {
-        console.log("API Response:", response);
-        return response.items;
-      },
-
-      dataSendParams:{
-        pageNumber: function() {
-          return this.getPage();
+        layout: "fitColumns",
+        pagination: true,
+        paginationMode: "remote",
+        // paginationSize: 50 ,
+        // paginationSizeSelector: [5, 10, 25, 50, 100],
+        ajaxParams: {
+            pageNumber: 1,
+            pageSize: 100
         },
-        pageSize: function() {
-          return this.getPageSize();
-        }
-      },
-      paginationDataReceived: {
-        data: "items",
-        total: "totalCount",
-        page: "pageNumber",
-        last_row: "totalCount"
-      },
+        ajaxURL: "https://localhost:7180/GetAllInvoices",
+        ajaxConfig: "GET",
+        ajaxContentType: "json",
 
-      columns: [
-        { title: "Tran ID", field: "tranId", headerFilter: "input" },
-        { title: "Ref No", field: "tranRefNo", headerFilter: "input" },
-        { title: "Item ID", field: "itemId", headerFilter: "input" },
-        { title: "Pricing List", field: "pricingListId", headerFilter: "input" },
-        { title: "Quantity", field: "quantity", headerFilter: "input" },
-        { title: "Sale Price", field: "salePrice", headerFilter: "input" },
-        { title: "Created", field: "creationDate", headerFilter: "input" }
-      ]
-    });
+        ajaxResponse: function (url, params, response) {
+            return response.items; // Only return the data array
+        },
+
+        columns: [
+            { title: "Tran ID", field: "tranId", headerFilter: "input" },
+            { title: "Ref No", field: "tranRefNo", headerFilter: "input" },
+            { title: "Item ID", field: "itemId", headerFilter: "input" },
+            { title: "Pricing List", field: "pricingListId", headerFilter: "input" },
+            { title: "Quantity", field: "quantity", headerFilter: "input" },
+            { title: "Sale Price", field: "salePrice", headerFilter: "input" },
+            { title: "Created", field: "creationDate", headerFilter: "input" }
+        ]
+        });
+
   </script>
 </body>
 </html>
